@@ -1,5 +1,8 @@
 package com.hsp1to5;
 
+/**
+ * @author zangaiyao
+ */
 public class Main {
     public static void main(String[] args) {
         // 当文本光标位于高亮显示的文本处时按 Alt+Enter，
