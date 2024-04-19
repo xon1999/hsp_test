@@ -27,4 +27,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-/src/com/hsp1to5/Main.java
+/src/com/hsp/Main.java
