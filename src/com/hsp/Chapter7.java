@@ -27,7 +27,8 @@ public class Chapter7 {
 
     void testP251() {
         Car myCar = new Car("XiaoMiSu7", 239_000, "purple", new String[]{"zangaiyao", "misayao"});
-        System.out.println(myCar.model + "\t" + myCar.price + "\t" + myCar.color + "\t" + myCar.masters[0] + "\t" + myCar.masters[1]);
+        System.out.println(myCar.model + "\t" + myCar.getPrice() + "\t" + myCar.color + "\t" + myCar.masters[0] + "\t" + myCar.masters[1]);
+        System.out.println("myCar"+myCar);
     }
 
     /**
@@ -68,7 +69,7 @@ public class Chapter7 {
 
 class Car {
     String model;
-    double price = 1000_00;
+    private double price = 1000_00;
     String color;
     String[] masters;
 
@@ -83,11 +84,27 @@ class Car {
         this.masters = masters;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public boolean compareTo(Car b) {
         return Arrays.equals(this.masters, b.masters) && this.model.equals(b.model) && this.price == b.price && this.color.equals(b.color);
     }
 
-
+    @Override
+    public String toString() {
+        return "Car{" +
+                "model='" + model + '\'' +
+                ", price=" + price +
+                ", color='" + color + '\'' +
+                ", masters=" + Arrays.toString(masters) +
+                '}';
+    }
 }
 
 class A01 {

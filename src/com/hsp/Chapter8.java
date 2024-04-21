@@ -42,6 +42,10 @@ class Vtuber extends Profession{
         System.out.println(this.teamType);
     }
 
+    public teamTypes getTeamType() {
+        return teamType;
+    }
+
     //细节: 子类方法不能缩小父类方法的访问权限
     //public > protected > 默认>private
     @Override
