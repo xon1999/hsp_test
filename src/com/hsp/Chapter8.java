@@ -11,6 +11,27 @@ public class Chapter8 {
         asoul.get();
         asoul.addSalary(6000);
         asoul.get();
+        Profession t = new Vtuber("ava", 0, true, teamTypes.SOLO);
+        //t.dance();// error 向上转型 父类的引用指向子类的对象 
+                    //可以使用父类的所有成员（遵守访问权限） 不能使用子类特有的成员（编译阶段决定的）
+        System.out.println(t instanceof Vtuber);//true
+        System.out.println(t instanceof Profession);//true
+
+        Vtuber b = (Vtuber) t;// 向下转型 要求：
+                                //1.只能转换引用，不能转换对象
+                                //2.转换的目标引用要指向目前所声明的编译类型对象
+                                //3.向下转型后 可以调用子类所有的成员
+        System.out.println(b.equals(t));// true
+        System.out.println(b.equals(asoul));//false
+        System.out.println(b instanceof Vtuber);//true
+        System.out.println(b instanceof Profession);  //true 
+        System.out.println(b.hashCode()==t.hashCode());//true 对象都是ava 引用不一样罢了        
+        b.dance();
+        System.out.println("asoul:"+asoul.getClass());
+        System.out.println("t:"+t.getClass()); // getClass() return running Class
+        System.out.println("b:"+b.getClass());
+        
+
     }
 }
 class Profession{
@@ -25,6 +46,19 @@ class Profession{
 
     protected void addSalary(double addition){
         this.meanSalary += addition;
+    }
+
+    // 多态的应用 
+    @Override
+    public boolean equals(Object t) {
+        if(this == t){return true;}
+        if(t instanceof Profession){
+            Profession p =(Profession) t;
+        if(this.isNew == p.isNew&&this.name.equalsIgnoreCase(p.name)&&(this.meanSalary-p.meanSalary<0.00001)){
+            return true;
+        }
+    }
+        return false;
     }
 }
 
@@ -52,6 +86,13 @@ class Vtuber extends Profession{
     public void addSalary(double addition){
         this.meanSalary += addition*2;
     }
+
+    public void dance(){
+        System.out.println("Vtuber" +this.name +" almost can dance.");
+
+    }
+
+
 
 }
 
