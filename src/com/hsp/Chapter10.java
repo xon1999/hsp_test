@@ -34,6 +34,13 @@ public class Chapter10 {
         System.out.println(Tara.getTaraInstance().getPosition());
 
     }
+
+    void testP421(){
+        Manager ming = new Manager("xiaoming",003,24_000,5000);
+        CommonEmployee hei = new CommonEmployee("xiaohei",040,8_000);
+        ming.work();
+        hei.work();
+    }
 }
 class Person{
     private static int numbers = 0;
@@ -140,6 +147,7 @@ class Idol extends Person{
 }
 
 // final 1、不希望某个类被继承时修饰
+//一般来说，如果一个类已经是final 类了，就没有必要再将方法修饰成final 方法
 final class Tara extends Idol{
     //使用【单例模式--懒汉模式】定义Tara
     //1.仍然构造器私有化
@@ -214,5 +222,69 @@ final class Asoul extends Idol{
                 '}';
     }
 }
+
+abstract class Employee {
+    private String name;
+    private int id;
+    private double salary;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public Employee(String name, int id, double salary) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+
+    public abstract void work();
+}
+
+class Manager extends Employee{
+    private double bonus;
+
+    public Manager(String name, int id, double salary,double bonus) {
+        super(name, id, salary);
+        this.bonus = bonus;
+    }
+
+    @Override
+    public void work() {
+        System.out.println("Manager is working...");
+
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "name=" +  super.getName()+
+                ", id=" + super.getId() +
+                ", salary=" + super.getSalary() +
+                ", bonus=" + bonus +
+                '}';
+    }
+}
+
+class CommonEmployee extends Employee{
+
+    public CommonEmployee(String name, int id, double salary) {
+        super(name, id, salary);
+    }
+
+    @Override
+    public void work() {
+        System.out.println("Employee is working without bonus...");
+    }
+}
+
 enum PersonSex{MALE, FEMALE}
 enum IdolSkill{DANCE,SING,PAINT,TALK,GAME}

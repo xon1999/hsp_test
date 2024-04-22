@@ -24,7 +24,8 @@ public class Main {
     static void chapter10Run(){
         Chapter10 chapter10Demo = new Chapter10();
 //        chapter10Demo.testP375();
-        chapter10Demo.testP406();
+//        chapter10Demo.testP406();
+        chapter10Demo.testP421();
     }
 
     public static void main(String[] args) {
