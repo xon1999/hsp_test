@@ -29,12 +29,12 @@ public class Chapter8 {
         System.out.println(b instanceof Vtuber);//true
         System.out.println(b instanceof Profession);  //true 
         System.out.println(b.hashCode()==t.hashCode());//true 对象都是ava 引用不一样罢了        
-        b.dance();
-        System.out.println("asoul:"+asoul.getClass());
-        System.out.println("t:"+t.getClass()); // getClass() return running Class
-        System.out.println("b:"+b.getClass());
-        System.out.println("asoul:"+asoul.counts);
-        System.out.println(asoul.counts==b.counts?asoul.counts==t.counts?true:false:false);
+        b.dance();//Vtuberava almost can dance.
+        System.out.println("asoul:"+asoul.getClass());//asoul:class com.hsp.Vtuber
+        System.out.println("t:"+t.getClass()); // getClass() return running Class: class com.hsp.Vtuber
+        System.out.println("b:"+b.getClass());//class com.hsp.Vtuber
+        System.out.println("asoul:"+asoul.counts);//3
+        System.out.println(asoul.counts==b.counts&&asoul.counts==t.counts);// true
 
 
     }
