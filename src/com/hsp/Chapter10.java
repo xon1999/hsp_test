@@ -1,6 +1,7 @@
 
 package com.hsp;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 /**
@@ -24,11 +25,13 @@ public class Chapter10 {
 
 
 
+
     }
 
     void testP406(){
         System.out.println(Asoul.getAsoulInstance());
         System.out.println(Tara.getTaraInstance());
+        System.out.println(Tara.getTaraInstance().getPosition());
 
     }
 }
@@ -109,6 +112,11 @@ class Idol extends Person{
         this.skill = skill;
     }
 
+    // final 2、父类的某个方法不希望被子类override重写时使用。
+    public final String getPosition(){
+        return "Entertainment";
+    }
+
     public IdolSkill[] getSkill() {
         return skill;
     }
@@ -125,17 +133,23 @@ class Idol extends Person{
                 "name=" + super.getName() +
                 ", age=" + super.getAge() +
                 ", sex=" + super.getSex() +
-                ", skill=" + skill +
+                ", skill=" + Arrays.toString(skill) +
                 '}';
 
     }
 }
+
+// final 1、不希望某个类被继承时修饰
 final class Tara extends Idol{
     //使用【单例模式--懒汉模式】定义Tara
     //1.仍然构造器私有化
     //2.声明一个 static 静态属性对象
     //3.提供一个 public 的 static 方法，可以返回一個 Tara 對象
     //4.懒汉式，只有当用户使用getInstance 时，才返回 Tara 對象, 後面再次調用時，會返回上次創建的 Tara 對象
+    //不提前创建对象浪费资源，但存在线程安全问题。
+
+
+    // final 3、不希望某个属性的值被修改
     private static final int GROUP_SIZE = 6;
     private static Tara tara;
     static {
@@ -169,7 +183,7 @@ final class Asoul extends Idol{
     //1. 将构造器私有化
     //2. 在类的内部直接创建对象(该对象是static)
     //3. 提供一个公共的 static 方法，返回 asoul 对象
-    //好处：
+    //好处：不存在线程安全问题，但存在对象未使用浪费资源问题。
     private static final int GROUP_SIZE = 4;
     static {
         Person.addNumbers(GROUP_SIZE);
