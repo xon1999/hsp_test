@@ -41,6 +41,44 @@ public class Chapter10 {
         ming.work();
         hei.work();
     }
+     void testP432(){
+        Asoul asoul = Asoul.getAsoulInstance();
+        asoul.dance();
+     }
+
+     void testP446(){
+        Asoul asoul = Asoul.getAsoulInstance();
+        Tara tara = Tara.getTaraInstance();
+        // 接口的多态
+        // 1.多态参数 接口多态（接口引用可以指向实现了接口的类的对象）
+        printEntertainment(asoul);
+        printEntertainment(tara);
+
+        //2.多态数组 类似于类的多态
+        EntertainmentMethods[] ens = new EntertainmentMethods[2];
+        ens[0] = asoul;
+        ens[1] = tara;
+        for (EntertainmentMethods en : ens){
+            en.dance();
+            if(en instanceof Asoul){
+                System.out.println(((Asoul)en).toString());
+            }
+         }
+
+        //3. 多态传递 接口类型的变量可以指向实现了该接口的类的对象实例
+        // 如果EntertainmentMethodsV2继承了EntertainmentMethods 接口
+         // 而 Asoul 类实现了EntertainmentMethodsV2接口
+         // 那么相当于Asoul 类也实现了EntertainmentMethods接口
+        EntertainmentMethodsV2 emV2 = asoul;
+        emV2.game();
+        EntertainmentMethods em = asoul;
+        em.sing();
+     }
+
+     void printEntertainment(EntertainmentMethods en){
+        en.sing();
+        en.dance();
+     }
 }
 class Person{
     private static int numbers = 0;
@@ -148,7 +186,7 @@ class Idol extends Person{
 
 // final 1、不希望某个类被继承时修饰
 //一般来说，如果一个类已经是final 类了，就没有必要再将方法修饰成final 方法
-final class Tara extends Idol{
+final class Tara extends Idol implements EntertainmentMethods{
     //使用【单例模式--懒汉模式】定义Tara
     //1.仍然构造器私有化
     //2.声明一个 static 静态属性对象
@@ -184,8 +222,30 @@ final class Tara extends Idol{
                 ", groupSize=" +GROUP_SIZE +
                 '}';
     }
+
+    @Override
+    public void sing() {
+        System.out.println("Tara is singing..." );
+    }
+
+    @Override
+    public void dance() {
+        System.out.println("Tara is dancing..." );
+    }
+
+    @Override
+    public void paint() {
+        System.out.println("Tara is painting..." );
+    }
+
+    @Override
+    public void talk() {
+        System.out.println("Tara is talking..." );
+    }
+
+
 }
-final class Asoul extends Idol{
+final class Asoul extends Idol implements EntertainmentMethodsV2{
     //如何保障我们只能创建一个Asoul对象
     //步骤[单例模式-饿汉式]
     //1. 将构造器私有化
@@ -221,7 +281,38 @@ final class Asoul extends Idol{
                 ", groupSize=" +GROUP_SIZE +
                 '}';
     }
+
+    @Override
+    public void sing() {
+        System.out.println("Ava is singing 'Spring'");
+    }
+
+    @Override
+    public void dance() {
+        System.out.println("Bella is dancing with tara's background music.");
+
+    }
+
+    @Override
+    public void paint() {
+        System.out.println("Diana is painting a cute little strawberry.");
+
+    }
+
+    @Override
+    public void talk() {
+        System.out.println("Eileen is talking about her friend Ava's joking things.");
+
+    }
+
+    @Override
+    public void game() {
+        System.out.println("Ava is playing cyberpunk-2077 and going to pass it.");
+    }
 }
+
+
+
 
 abstract class Employee {
     private String name;
@@ -288,3 +379,16 @@ class CommonEmployee extends Employee{
 
 enum PersonSex{MALE, FEMALE}
 enum IdolSkill{DANCE,SING,PAINT,TALK,GAME}
+
+interface EntertainmentMethods {
+    public void sing();
+    public void dance();
+    public void paint();
+    public void talk();
+
+
+}
+
+interface EntertainmentMethodsV2 extends EntertainmentMethods{
+    public void game();
+}
