@@ -13,7 +13,7 @@ import org.w3c.dom.ls.LSOutput;
  */
 public class Chapter11 {
     void testP482(){
-        System.out.println(Season.FALL.name());
+        System.out.println(Season.FALL.getName());
     }
 }
 
@@ -28,6 +28,12 @@ enum Season{
         this.tem = tem;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getTem() {
+        return tem;
+    }
 
 }
