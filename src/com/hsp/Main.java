@@ -1,5 +1,7 @@
 package com.hsp;
 
+import java.io.FileNotFoundException;
+
 /**
  * @author zangaiyao
  */
@@ -33,9 +35,42 @@ public class Main {
         Chapter11 chapter11Demo = new Chapter11();
         chapter11Demo.testP482();
     }
+    static void chapter12Run(){
+        Chapter12 chapter12Demo = new Chapter12();
+        chapter12Demo.testP505();
+        try {
+            chapter12Demo.testP528();
+        }catch (Chapter12.AgeException e){
+            System.out.println(e.getMessage());
+        }
 
-    public static void main(String[] args) {
-        Main.chapter11Run();
+    }
+
+    static void chapter13Run(){
+        Chapter13 chapter13Demo = new Chapter13();
+        chapter13Demo.testP533();
+        chapter13Demo.testP541();
+        chapter13Demo.testP583();
+        chapter13Demo.testP595();
+    }
+    static void chapter14Run(){
+        Chapter14 chapter14Demo = new Chapter14();
+        chapter14Demo.testP601();
+
+    }
+    static void chapter15Run(){
+        Chapter15 chapter15Demo = new Chapter15();
+        chapter15Demo.testP700();
+        chapter15Demo.testP721();
+    }
+
+    static void chapter17Run(){
+        Chapter17 chapter17Demo = new Chapter17();
+        chapter17Demo.testP780();
+    }
+
+    public static void main(String[] args){
+        Main.chapter17Run();
 
 
     }
